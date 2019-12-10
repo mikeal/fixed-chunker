@@ -1,8 +1,8 @@
 const getLength = arr => arr.reduce((x, y) => x + y.length, 0)
 
-const fixed = async function * (stream, size = 1024 * 1024) {
+const fixed = async function * (iter, size = 1024 * 1024) {
   const tail = []
-  for await (const chunk of stream) {
+  for await (const chunk of iter) {
     tail.push(chunk)
     while (getLength(tail) >= size) {
       let buff = []
